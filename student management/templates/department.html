@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block title %} Add Department {% endblock title %}
+{% block body %}
+<h4
+  class="text-center text-white pt-2 pb-2"
+  style="
+    color: white;
+    background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+  "
+>
+  <span>Add Department</span>
+</h4>
+
+{% with messages=get_flashed_messages(with_categories=true) %} {% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form action="/department" method="post">
+        <div class="form-group">
+          <label for="dept">Enter Department</label>
+          <input type="text" class="form-control" name="dept" id="dept" />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-sm btn-block mt-3"
+          style="
+            color: white;
+            background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+          "
+        >
+          Add Department
+        </button>
+      </form>
+      <br />
+      <br />
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock body %}

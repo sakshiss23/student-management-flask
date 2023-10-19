@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block title %} Student Details {% endblock title %}
+{% block body %}
+<h4
+  class="text-center pt-2 pb-2"
+  style="
+    color: white;
+    background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+  "
+>
+  <span>About us</span>
+</h4>
+
+{% with messages=get_flashed_messages(with_categories=true) %} {% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<br />
+
+<div>
+  <center>
+    <p>This project is built with &hearts; by Sakshi</p>
+  </center>
+</div>
+
+{% endblock body %}

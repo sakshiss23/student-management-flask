@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block title %} Calculate Marks {% endblock title %}
+{% block body %}
+<h4
+  class="text-center pt-2 pb-2"
+  style="
+    color: white;
+    background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+  "
+>
+  <span>Calculate Marks</span>
+</h4>
+
+{% with messages=get_flashed_messages(with_categories=true) %} {% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form action="/addmarks" method="post">
+        <div class="form-group">
+          <select class="form-control" id="rollno" name="rollno" required>
+            <option selected>Select USN</option>
+            {% for r in query %}
+            <option value="{{r.rollno}}">{{r.rollno}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br />
+        <div
+          class="form-group"
+          oninput="marks.value=parseInt(a.value)/5+parseInt(b.value)/5+parseInt(c.value)/5+parseInt(d.value)+parseInt(e.value)+parseInt(f.value)/2"
+        >
+          <label for="marks">CIA 1</label>
+          <input type="number" class="form-control mb-3" name="a" id="a" />
+          <label for="marks">CIA 2</label>
+          <input type="number" class="form-control mb-3" name="b" id="b" />
+          <label for="marks">CIA 3</label>
+          <input type="number" class="form-control mb-3" name="c" id="c" />
+          <label for="marks">QUIZ</label>
+          <input type="number" class="form-control mb-3" name="d" id="d" />
+          <label for="marks">OPEN BOOK</label>
+          <input type="number" class="form-control mb-3" name="e" id="e" />
+          <label for="marks">SEE</label>
+          <input type="number" class="form-control mb-3" name="f" id="f" />
+          <label for="marks">Aggregate Marks Obtained</label>
+          <input
+            type="number"
+            name="marks"
+            id="marks"
+            step="any"
+            class="form-control"
+          />
+          <button
+            type="submit"
+            class="btn btn-sm btn-block mt-3"
+            style="
+              color: white;
+              background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+            "
+          >
+            Add Marks
+          </button>
+        </div>
+        <br />
+      </form>
+      <br />
+      <br />
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock body %}
